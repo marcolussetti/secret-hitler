@@ -91,7 +91,7 @@ const checkIP = config => {
 	} else if (process.env.NODE_ENV !== 'production') {
 		config.vpnScore = 0;
 		next(config);
-	} else if (getIPIntelCounter.count >= 1995 && new Date() < getIPIntelCounter.reset && !VPNCache[signupIP]) {
+	} else if (checkIpIntel && getIPIntelCounter.count >= 1995 && new Date() < getIPIntelCounter.reset && !VPNCache[signupIP]) {
 		const rateLimitSignup = new Signups({
 			date: new Date(),
 			userName: username,
@@ -218,7 +218,7 @@ const checkIP = config => {
 
 const continueSignup = config => {
 	const { req, res, username, password, email, signupIP, save, hasBypass, vpnScore, bypassKey, isOAuth, type, profile } = config;
-	if (vpnScore >= 0.995 && !hasBypass) {
+	if (checkIpIntel && vpnScore >= 0.995 && !hasBypass) {
 		const vpnSignup = new Signups({
 			date: new Date(),
 			userName: username,
