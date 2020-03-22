@@ -141,6 +141,8 @@ NODE_ENV=production MGKEY=<your_mailgun_key> MGDOMAIN=<your_mailgun_domain> DOMA
 - *DISCORDREPORTURL*, *DISCORDBROADCASTURL*, *DISCORDCRASHURL*, *DISCORDMODLOGURL*, *DISCORDADMINPING*: stuff for Discord report & integration
 - *MGKEY*: Mailgun API key
 - *MGDOMAIN*: Mailgun domain
+- *CHECKIPINTEL*: attempt to configure this ip checker business
+- *BYPASSALLCHECKS*: mark all users as bypassing the various TOR, IPCounter, and other checks that block users from creating accounts
 
 ## Statistics
 

@@ -13,6 +13,8 @@ const { expandAndSimplify, obfIP } = require('./socket/ip-obf');
 const prodCacheBustToken = require('./prodCacheBustToken');
 const sitename = process.env.SITENAME;
 const domain = process.env.DOMAIN;
+const checkIpIntel = process.env.CHECKIPINTEL;
+const bypassAllChecks = process.env.BYPASSCHECKS;
 
 /**
  * @param {object} req - express request object.
@@ -49,7 +51,8 @@ const renderPage = (req, res, pageName, varName) => {
 };
 
 const checkIP = config => {
-	const { res, username, email, signupIP, hasBypass, next } = config;
+	const { res, username, email, signupIP, bypassValue, next } = config;
+	const hasBypass = (bypassValue || bypassAllChecks) ? true : false;
 	if (hasBypass) {
 		config.vpnScore = 0;
 		next(config);
