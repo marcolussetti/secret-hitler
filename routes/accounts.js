@@ -11,6 +11,8 @@ const blacklistedWords = require('../iso/blacklistwords');
 const bannedEmails = require('../utils/disposableEmails');
 const { expandAndSimplify, obfIP } = require('./socket/ip-obf');
 const prodCacheBustToken = require('./prodCacheBustToken');
+const sitename = process.env.SITENAME;
+const domain = process.env.DOMAIN;
 
 /**
  * @param {object} req - express request object.

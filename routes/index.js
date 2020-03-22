@@ -13,6 +13,8 @@ const savedTorIps = require('../utils/savedtorips');
 const fetch = require('node-fetch');
 const prodCacheBustToken = require('./prodCacheBustToken');
 const { DEFAULTTHEMECOLORS } = require('../src/frontend-scripts/node-constants');
+const sitename = process.env.SITENAME;
+const domain = process.env.DOMAIN;
 
 /**
  * @param {object} req - express request object.

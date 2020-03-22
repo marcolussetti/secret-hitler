@@ -16,6 +16,8 @@ const resetTemplate = _.template(
 		encoding: 'UTF-8'
 	})
 );
+const sitename = process.env.SITENAME;
+const domain = process.env.DOMAIN;
 
 const ensureAuthenticated = (req, res, next) => {
 	if (req.isAuthenticated()) {
@@ -145,13 +147,13 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 		// console.log(`localhost:8080/${isResetPassword ? 'reset-password' : 'verify-account'}/${username}/${token}`);
 
 		nmMailgun.sendMail({
-			from: 'SH.io accounts <donotreply@secrethitler.io>',
-			html: isResetPassword ? resetTemplate({ username, token }) : verifyTemplate({ username, token }),
+			from: `${sitename} accounts <donotreply@${domain}`,
+			html: isResetPassword ? resetTemplate({ sitename, domain, username, token, }) : verifyTemplate({ sitename, domain, username, token }),
 			text: isResetPassword
-				? `Hello ${username}, a request has been made to change your password - go to the address below to change your password. https://secrethitler.io/reset-password/${username}/${token}.`
-				: `Hello ${username}, a request has been made to verify your account - go to the address below to verify it. https://secrethitler.io/verify-account/${username}/${token}`,
+				? `Hello ${username}, a request has been made to change your password - go to the address below to change your password. https://${domain}/reset-password/${username}/${token}.`
+				: `Hello ${username}, a request has been made to verify your account - go to the address below to verify it. https://${domain}/verify-account/${username}/${token}`,
 			to: email,
-			subject: isResetPassword ? 'SH.io - reset your password' : 'SH.io - verify your account'
+			subject: isResetPassword ? `${sitename} - reset your password` : `${sitename} - verify your account`
 		});
 
 		// nmMailgun.sendMail({

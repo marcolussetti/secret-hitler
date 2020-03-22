@@ -37,6 +37,8 @@ const { LEGALCHARACTERS } = require('../../src/frontend-scripts/node-constants')
 const { makeReport } = require('./report.js');
 const { chatReplacements } = require('./chatReplacements');
 const generalChatReplTime = Array(chatReplacements.length + 1).fill(0);
+const domain = process.env.DOMAIN;
+
 /**
  * @param {object} game - game to act on.
  * @return {string} status text.
@@ -3863,7 +3865,7 @@ module.exports.handlePlayerReport = (passport, data) => {
 			: 'Anonymous'
 		: data.reportedPlayer;
 	const body = JSON.stringify({
-		content: `Game UID: <https://secrethitler.io/game/#/table/${data.uid}>\nReported player: ${blindModeAnonymizedPlayer}\nReason: ${playerReport.reason}\nComment: ${httpEscapedComment}`
+		content: `Game UID: <https://${domain}/game/#/table/${data.uid}>\nReported player: ${blindModeAnonymizedPlayer}\nReason: ${playerReport.reason}\nComment: ${httpEscapedComment}`
 	});
 
 	const options = {
