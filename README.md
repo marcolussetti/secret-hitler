@@ -75,7 +75,54 @@ Upon seeing the end result in the terminal of `Assigned.` you will know it worke
 
 ## Running in production mode
 
-Don't. Respect the maintainer and contributors who have given their time for free to make SH.io as good as it is. Running this codebase outside of SH.io may have unintended consequences.
+These instructions cover an Ubuntu 18.04 LTS deployment. Convert as appropriate to the deployment vehicle.
+
+```bash
+
+sudo apt update
+sudo apt upgrade
+
+# Install MongoDB Community Edition
+wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+sudo apt update
+sudo apt-get install -y mongodb-org
+sudo systemctl start mongod  # Start MongoDB
+
+# Install Redis
+sudo apt-get install redis-server
+sudo systemctl enable redis-server.service
+
+# Install NodeJS 12.x
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get update && sudo apt-get install -y nodejs
+
+# Install Yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update && sudo apt install yarn
+
+# Put Secret Hitler somewhere
+sudo mkdir /opt/secrethitler
+sudo chown secrethitler:secrethitler /opt/secrethitler
+sudo su secrethitler
+cd /opt/secrethitler
+# Currently might need a  fork to get some extra settings https://github.com/marcolussetti/secret-hitler.git
+# git clone https://github.com/cozuya/secret-hitler.git .
+git clone https://github.com/marcolussetti/secret-hitler.git
+
+# If using upstream, reset to last good revision (check https://github.com/cozuya/secret-hitler/commits/master)
+# git reset 7cd57f48b6685cb7a441d8a9b4db144a039dd820 --hard  # Last good revision as of 2020-03-21
+
+# Install prerequisites
+yarn
+
+# Build
+yarn build
+
+# Export variables & serve on port 8080
+NODE_ENV=production MGKEY=<your_mailgun_key> MGDOMAIN=<your_mailgun_domain> DOMAIN=<your_domain> SITENAME=<your_site_name> node bin/dev.js
+```
 
 ## Statistics
 
