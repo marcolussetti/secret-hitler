@@ -182,10 +182,10 @@ module.exports = () => {
 					backgroundColor,
 					secondaryBackgroundColor: `hsl(${backgroundHue}, ${backgroundSaturation}%, ${
 						backgroundLightness > 50 ? backgroundLightness - 7 : backgroundLightness + 7
-					}%)`,
+						}%)`,
 					tertiaryBackgroundColor: `hsl(${backgroundHue}, ${backgroundSaturation}%, ${
 						backgroundLightness > 50 ? backgroundLightness - 14 : backgroundLightness + 14
-					}%)`,
+						}%)`,
 					textColor,
 					secondaryTextColor: `hsl(${textHue}, ${textSaturation}%, ${textLightness > 50 ? textLightness - 7 : textLightness + 7}%)`,
 					tertiaryTextColor: `hsl(${textHue}, ${textSaturation}%, ${textLightness > 50 ? textLightness - 14 : textLightness + 14}%)`
@@ -237,10 +237,10 @@ module.exports = () => {
 
 		const secondaryBackgroundColor = `hsl(${backgroundHue}, ${backgroundSaturation}%, ${
 			backgroundLightness > 50 ? backgroundLightness - 5 : backgroundLightness + 5
-		}%)`;
+			}%)`;
 		const tertiaryBackgroundColor = `hsl(${backgroundHue}, ${backgroundSaturation}%, ${
 			backgroundLightness > 50 ? backgroundLightness - 10 : backgroundLightness + 10
-		}%)`;
+			}%)`;
 		const secondaryTextColor = `hsl(${textHue}, ${textSaturation}%, ${textLightness > 50 ? textLightness - 7 : textLightness + 7}%)`;
 		const tertiaryTextColor = `hsl(${textHue}, ${textSaturation}%, ${textLightness > 50 ? textLightness - 14 : textLightness + 14}%)`;
 

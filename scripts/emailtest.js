@@ -24,8 +24,8 @@ const tomorrow = new Date();
 const token = `${Math.random()
 	.toString(36)
 	.substring(2)}${Math.random()
-	.toString(36)
-	.substring(2)}`;
+		.toString(36)
+		.substring(2)}`;
 
 tomorrow.setDate(tomorrow.getDate() + 1);
 
@@ -35,7 +35,7 @@ const message = emailjs.message.create({
 	subject: `${sitename} - verify your account`,
 	attachment: [{ data: template({ username: 'TestUser', token }), alternative: true }]
 });
-email_server.send(message, function(err, message) {
+email_server.send(message, function (err, message) {
 	if (err) console.log(err);
 	else console.log('ok');
 });
