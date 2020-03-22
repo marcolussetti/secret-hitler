@@ -1,6 +1,8 @@
 const EMAIL_USER = 'REDACT';
 const EMAIL_PASS = 'REDACT';
 const EMAIL_TARGET = 'REDACT';
+const sitename = process.env.SITENAME;
+const domain = process.env.DOMAIN;
 
 const _ = require('lodash');
 const fs = require('fs');
@@ -28,9 +30,9 @@ const token = `${Math.random()
 tomorrow.setDate(tomorrow.getDate() + 1);
 
 const message = emailjs.message.create({
-	from: `secrethitler.io <${EMAIL_USER}>`,
+	from: `${sitename} <${EMAIL_USER}>`,
 	to: `${EMAIL_TARGET} <${EMAIL_TARGET}>`,
-	subject: 'Secret Hitler IO - verify your account',
+	subject: `${sitename} - verify your account`,
 	attachment: [{ data: template({ username: 'TestUser', token }), alternative: true }]
 });
 email_server.send(message, function(err, message) {
