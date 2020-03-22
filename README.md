@@ -124,6 +124,24 @@ yarn build
 NODE_ENV=production MGKEY=<your_mailgun_key> MGDOMAIN=<your_mailgun_domain> DOMAIN=<your_domain> SITENAME=<your_site_name> node bin/dev.js
 ```
 
+### Environment variables
+
+- *MONGODB_URI*: takes a valid mongodb URI in the format `mongodb://localhost:27017/secret-hitler-app`. Not fully implemented as there's still hardcoded instances to be fixed.
+- *REDIS_HOST*: takes a valid IP to a redis instance in the format `127.0.0.1`. Not fully implemented as there's still hardcoded instances to be fixed.
+- *REDIS_PORT*: takes a valid port to the redis instance, default is `6379`. Not fully implemented as there's still hardcoded instances to be fixed.
+- *NODE_ENV*: takes the environment type as either `development`  (or anything) or `production`.
+- *SECRETSESSIONKEY*: secret key to set up sessions, only used for production
+- *DISCORDCLIENTID*, *DISCORDCLIENTSECRET*: for the integration with Discord
+- *GITHUBCLIENTID*, *GITHUBCLIENTSECRET*: for the integration with GitHub
+- *PORT*: port to run stuff on (default 8080)
+- *DOMAIN*: domain name to use for emails, meta tags, etc.
+- *SITENAME*: site name to use for templates, emails, etc.
+- *DEVTIMEDDELAY*: dunno, some dev stuff
+- *DISCORDMODPING*: looks like a keyword to ping devs? Might be some other parameter such as channel for Discord integration
+- *DISCORDREPORTURL*, *DISCORDBROADCASTURL*, *DISCORDCRASHURL*, *DISCORDMODLOGURL*, *DISCORDADMINPING*: stuff for Discord report & integration
+- *MGKEY*: Mailgun API key
+- *MGDOMAIN*: Mailgun domain
+
 ## Statistics
 
 Production has a limited set of data on the /stats page, check network traffic for the XHR for that if interested. If you'd like to do more detailed data analysis, please contact the maintainer for a dump of the (anonymized) profile and replay data.
