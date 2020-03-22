@@ -120,8 +120,23 @@ yarn
 # Build
 yarn build
 
-# Export variables & serve on port 8080
-NODE_ENV=production MGKEY=<your_mailgun_key> MGDOMAIN=<your_mailgun_domain> DOMAIN=<your_domain> SITENAME=<your_site_name> node bin/dev.js
+# Export variables
+export NODE_ENV=production
+export MGKEY=<your_mailgun_key>
+export MGDOMAIN=<your_mailgun_domain>
+export DOMAIN=<your_domain>
+export SITENAME=<your_site_name>
+export CHECKIPINTEL=false
+export BYPASSALLCHECKS=true
+export SECRETSESSIONKEY=<whatever>
+
+# If you want OAUTH integration
+export GITHUBCLIENTID=<your_id>
+export GITHUBCLIENTSECRET=<your_secret>
+export DISCORDCLIENTID=<your_id>
+export DISCORDCLIENTSECRET=<your_secret>
+
+node bin/dev.js
 ```
 
 ### Environment variables
