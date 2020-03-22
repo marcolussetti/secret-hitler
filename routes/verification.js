@@ -126,8 +126,8 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 	const token = `${Math.random()
 		.toString(36)
 		.substring(2)}${Math.random()
-		.toString(36)
-		.substring(2)}`;
+			.toString(36)
+			.substring(2)}`;
 	const modelData = {
 		username,
 		token,

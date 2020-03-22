@@ -212,8 +212,8 @@ module.exports.formattedGameList = () => {
 		gameStatus: games[gameName].gameState.isCompleted
 			? games[gameName].gameState.isCompleted
 			: games[gameName].gameState.isTracksFlipped
-			? 'isStarted'
-			: 'notStarted',
+				? 'isStarted'
+				: 'notStarted',
 		seatedCount: games[gameName].publicPlayersState.length,
 		gameCreatorName: games[gameName].general.gameCreatorName,
 		minPlayersCount: games[gameName].general.minPlayersCount,
@@ -301,8 +301,8 @@ module.exports.createNewBypass = () => {
 		key = `${Math.random()
 			.toString(36)
 			.substring(2)}${Math.random()
-			.toString(36)
-			.substring(2)}`.trim();
+				.toString(36)
+				.substring(2)}`.trim();
 	} while (bypassKeys.indexOf(key) >= 0);
 	bypassKeys.push(key);
 	return key;

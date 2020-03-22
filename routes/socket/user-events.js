@@ -1741,7 +1741,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 				if (game.general.remakeCount !== 0) {
 					game.general.status = `Game is ${game.general.isTourny ? 'cancelled ' : 'remade'} in ${game.general.remakeCount} ${
 						game.general.remakeCount === 1 ? 'second' : 'seconds'
-					}.`;
+						}.`;
 					game.general.remakeCount--;
 				} else {
 					clearInterval(game.private.remakeTimer);
@@ -1770,7 +1770,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 		chat.chat.push({
 			text: ` has rescinded their vote to ${
 				game.general.isTourny ? 'cancel this tournament.' : 'remake this game.'
-			} (${remakePlayerCount}/${minimumRemakeVoteCount})`
+				} (${remakePlayerCount}/${minimumRemakeVoteCount})`
 		});
 	} else {
 		return;
@@ -2011,7 +2011,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 					socket.emit(
 						'sendAlert',
 						`${affectedPlayer.userName} {${affectedPlayerNumber + 1}} has already voted.\nThey were voting: ${
-							affectedPlayer.voteStatus.didVoteYes ? 'ja' : 'nein'
+						affectedPlayer.voteStatus.didVoteYes ? 'ja' : 'nein'
 						}\nYou have set them to vote: ${vote ? 'ja' : 'nein'}
 						`
 					);
@@ -3202,7 +3202,7 @@ module.exports.handleModerationAction = (socket, passport, data, skipCheck, modU
 					});
 
 					ipban.save(() => {
-						Account.find({ lastConnectedIP: data.ip }, function(err, users) {
+						Account.find({ lastConnectedIP: data.ip }, function (err, users) {
 							if (users && users.length > 0) {
 								users.forEach(user => {
 									if (isSuperMod) {
@@ -3253,7 +3253,7 @@ module.exports.handleModerationAction = (socket, passport, data, skipCheck, modU
 						ip: data.ip
 					});
 					timeout.save(() => {
-						Account.find({ userName: data.userName }, function(err, users) {
+						Account.find({ userName: data.userName }, function (err, users) {
 							if (users && users.length > 0) {
 								users.forEach(user => {
 									user.isTimeout = new Date(Date.now() + 18 * 60 * 60 * 1000);
@@ -3290,7 +3290,7 @@ module.exports.handleModerationAction = (socket, passport, data, skipCheck, modU
 						ip: data.ip
 					});
 					timeout3.save(() => {
-						Account.find({ lastConnectedIP: data.ip }, function(err, users) {
+						Account.find({ lastConnectedIP: data.ip }, function (err, users) {
 							if (users && users.length > 0) {
 								users.forEach(user => {
 									logOutUser(user.username);
@@ -3391,7 +3391,7 @@ module.exports.handleModerationAction = (socket, passport, data, skipCheck, modU
 
 					if (isSuperMod) {
 						ipbanl.save(() => {
-							Account.find({ lastConnectedIP: data.ip }, function(err, users) {
+							Account.find({ lastConnectedIP: data.ip }, function (err, users) {
 								if (users && users.length > 0) {
 									users.forEach(user => {
 										banAccount(user.username);
@@ -3447,7 +3447,7 @@ module.exports.handleModerationAction = (socket, passport, data, skipCheck, modU
 					break;
 				case 'enableVPNBypass':
 					bypassVPNCheck.status = false;
-					break;	
+					break;
 				case 'disableIpbans':
 					ipbansNotEnforced.status = true;
 					break;
@@ -3685,18 +3685,18 @@ module.exports.handleModerationAction = (socket, passport, data, skipCheck, modU
 						const setType = /setRWins/.test(data.action.type)
 							? 'rainbowWins'
 							: /setRLosses/.test(data.action.type)
-							? 'rainbowLosses'
-							: /setWins/.test(data.action.type)
-							? 'wins'
-							: 'losses';
+								? 'rainbowLosses'
+								: /setWins/.test(data.action.type)
+									? 'wins'
+									: 'losses';
 						const number =
 							setType === 'wins'
 								? data.action.type.substr(7)
 								: setType === 'losses'
-								? data.action.type.substr(9)
-								: setType === 'rainbowWins'
-								? data.action.type.substr(8)
-								: data.action.type.substr(10);
+									? data.action.type.substr(9)
+									: setType === 'rainbowWins'
+										? data.action.type.substr(8)
+										: data.action.type.substr(10);
 						const isPlusOrMinus = number.charAt(0) === '+' || number.charAt(0) === '-';
 
 						if (!isNaN(parseInt(number, 10)) || isPlusOrMinus) {
@@ -3801,7 +3801,7 @@ module.exports.handleModerationAction = (socket, passport, data, skipCheck, modU
 					const modReq = https.request(modOptions);
 
 					modReq.end(modAction);
-				} catch (error) {}
+				} catch (error) { }
 			}
 			modaction.save();
 		}
@@ -4000,7 +4000,7 @@ module.exports.checkUserStatus = (socket, callback) => {
 				// destroySession(username);
 			};
 
-			Account.findOne({ username: user }, function(err, account) {
+			Account.findOne({ username: user }, function (err, account) {
 				if (account) {
 					if (account.isBanned || (account.isTimeout && new Date() < account.isTimeout)) {
 						logOutUser(user);
