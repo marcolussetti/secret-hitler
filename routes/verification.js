@@ -147,7 +147,7 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 		// console.log(`localhost:8080/${isResetPassword ? 'reset-password' : 'verify-account'}/${username}/${token}`);
 
 		nmMailgun.sendMail({
-			from: `${sitename} accounts <donotreply@${domain}`,
+			from: `${domain} accounts <donotreply@${domain}`,
 			html: isResetPassword ? resetTemplate({ sitename, domain, username, token, }) : verifyTemplate({ sitename, domain, username, token }),
 			text: isResetPassword
 				? `Hello ${username}, a request has been made to change your password - go to the address below to change your password. https://${domain}/reset-password/${username}/${token}.`
