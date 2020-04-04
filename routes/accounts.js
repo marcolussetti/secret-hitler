@@ -14,7 +14,7 @@ const prodCacheBustToken = require('./prodCacheBustToken');
 const sitename = process.env.SITENAME;
 const domain = process.env.DOMAIN;
 const checkIpIntel = process.env.CHECKIPINTEL;
-const bypassAllChecks = process.env.BYPASSCHECKS;
+const bypassAllChecks = process.env.BYPASSALLCHECKS;
 
 /**
  * @param {object} req - express request object.
@@ -289,21 +289,31 @@ const continueSignup = config => {
 						return;
 					} else {
 						if (hasBypass) consumeBypass(bypassKey, username, signupIP);
-						const newPlayerBan = new BannedIP({
-							bannedDate: new Date(),
-							type: 'new',
-							signupIP
-						});
+						if (!bypassAllChecks) {
+							const newPlayerBan = new BannedIP({
+								bannedDate: new Date(),
+								type: 'new',
+								signupIP
+							});
 
-						passport.authenticate(type)(req, res, () => {
-							oauthSignup.save(() => {
-								newPlayerBan.save(() => {
+							passport.authenticate(type)(req, res, () => {
+								oauthSignup.save(() => {
+									newPlayerBan.save(() => {
+										req.login(account, () => {
+											res.redirect('/game');
+										});
+									});
+								});
+							});
+						} else {
+							passport.authenticate(type)(req, res, () => {
+								oauthSignup.save(() => {
 									req.login(account, () => {
 										res.redirect('/game');
 									});
 								});
 							});
-						});
+						}
 					}
 				}
 			);
