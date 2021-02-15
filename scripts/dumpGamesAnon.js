@@ -8,7 +8,7 @@ const Account = require('../models/account');
 const Game = require('../models/game');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://localhost:27017/secret-hitler-app`);
+mongoose.connect(`mongodb://mongodb:27017/secret-hitler-app`);
 
 const OUTPUT_DIR = '/var/www/secret-hitler/public/game-dumps';
 const GAMES_DIR = `${OUTPUT_DIR}/games`;
