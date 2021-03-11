@@ -16,7 +16,7 @@ const { expandAndSimplify } = require('./routes/socket/ip-obf');
 
 let store;
 
-const mongodbURI = typeof process.env.MONGODB_URI === 'undefined' ? 'mongodb://localhost:27017/secret-hitler-app' : process.env.MONGODB_URI;
+const mongodbURI = typeof process.env.MONGODB_URI === 'undefined' ? 'mongodb://mongodb:27017/secret-hitler-app' : process.env.MONGODB_URI;
 const redisHost = typeof process.env.REDIS_HOST === 'undefined' ? '127.0.0.1' : process.env.REDIS_HOST;
 const redisPort = typeof process.env.REDIS_PORT === 'undefined' ? '6379' : process.env.REDIS_PORT;
 

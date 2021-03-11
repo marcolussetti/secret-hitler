@@ -141,7 +141,7 @@ node bin/dev.js
 
 ### Environment variables
 
-- *MONGODB_URI*: takes a valid mongodb URI in the format `mongodb://localhost:27017/secret-hitler-app`. Not fully implemented as there's still hardcoded instances to be fixed.
+- *MONGODB_URI*: takes a valid mongodb URI in the format `mongodb://mongodb:27017/secret-hitler-app`. Not fully implemented as there's still hardcoded instances to be fixed.
 - *REDIS_HOST*: takes a valid IP to a redis instance in the format `127.0.0.1`. Not fully implemented as there's still hardcoded instances to be fixed.
 - *REDIS_PORT*: takes a valid port to the redis instance, default is `6379`. Not fully implemented as there's still hardcoded instances to be fixed.
 - *NODE_ENV*: takes the environment type as either `development`  (or anything) or `production`.
